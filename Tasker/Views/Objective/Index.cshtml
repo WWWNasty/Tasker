@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Domain.Objective>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="card-container">
+        @foreach (var objective in Model)
+        {
+            <div class="card col-md-4">
+                <div class="card-body">
+                    <h5>@objective.Name</h5>
+
+                    <p>Создано: @objective.StarDate.ToLocalTime()</p>
+
+                    <div class="form-check disabled">
+                        <label class="form-check-label">
+                            @Html.CheckBoxFor(record => objective.Completed, new {disabled = true})
+                            @if (objective.Completed)
+                            {
+                                <span>Выполнено</span>
+                            }
+                            else
+                            {
+                                <span>Не выполнено</span>
+                            }
+                        </label>
+                    </div>
+                    @Html.ActionLink("Редактировать", "Edit", "Objective", new {id = @objective.Id}, new {@class = "card-link btn btn-success"})
+
+                    @Html.ActionLink("Удалить", "Delete", "Objective", new {id = @objective.Id}, new {@class = "card-link btn btn-danger"})
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,21 @@
+﻿@model Domain.Objective
+
+@{
+    ViewBag.Title = "Добавление задачи";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Добавление задачи</h2>
+@using (Html.BeginForm("Add", "Objective"))
+{
+    @Html.HiddenFor(record => record.Id)
+
+    <div class="form-group">
+
+        @Html.LabelFor(record => record.Name)
+        @Html.TextBoxFor(record => record.Name, new {@class = "form-control", placeholder = "Mаксимально 200 символов!"})
+
+    </div>
+
+    <input type="submit" class="btn btn-success" value="Отправить"/>
+}

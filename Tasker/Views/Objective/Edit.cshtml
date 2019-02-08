@@ -1,0 +1,32 @@
+﻿@model Domain.Objective
+
+@{
+    ViewBag.Title = "Редактировать задачу";
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Редактировать задачу</h2>
+
+@using (Html.BeginForm("Edit", "Objective"))
+{
+    @Html.HiddenFor(record => record.Id)
+
+
+    <div class="form-group">
+        <p>Mаксимально 200 символов!</p>
+        @Html.LabelFor(record => record.Name)
+        @Html.TextBoxFor(record => record.Name, new {@class = "form-control"})
+    </div>
+
+    <div class="form-group">
+        @Html.CheckBoxFor(record => record.Completed)
+        @Html.LabelFor(record => record.Completed, new {@class = "form-check-label"})
+    </div>
+
+
+    <div class="form-group">
+        <input type="submit" class="btn btn-success" value="Отправить"/>
+    </div>
+}
